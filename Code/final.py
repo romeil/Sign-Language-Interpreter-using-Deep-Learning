@@ -153,7 +153,6 @@ def calculator_mode(cam):
 					elif second != '':
 						flag['second'] = True
 						info = "Clear screen"
-						#Thread(target=say_text, args=(info,)).start()
 						second = ''
 						flag['clear'] = True
 						try:
@@ -266,15 +265,11 @@ def text_mode(cam):
 
 			elif cv2.contourArea(contour) < 1000:
 				if word != '':
-					#print('yolo')
-					#say_text(text)
 					Thread(target=say_text, args=(word, )).start()
 				text = ""
 				word = ""
 		else:
 			if word != '':
-				#print('yolo1')
-				#say_text(text)
 				Thread(target=say_text, args=(word, )).start()
 			text = ""
 			word = ""
