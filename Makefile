@@ -1,5 +1,5 @@
 install:
-	pip install h5py
+    pip install h5py
     pip install numpy
     pip install scikit-learn
     pip install sklearn
