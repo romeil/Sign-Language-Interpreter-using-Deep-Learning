@@ -1,7 +1,6 @@
 import cv2, pickle
 import numpy as np
 import tensorflow as tf
-from cnn_tf import cnn_model_fn
 import os
 import sqlite3, pyttsx3
 from keras.models import load_model
@@ -18,7 +17,7 @@ def get_hand_hist():
 	return hist
 
 def get_image_size():
-	img = cv2.imread('gestures/0/100.jpg', 0)
+	img = cv2.imread('gestures/1/1.jpg', 0)
 	return img.shape
 
 image_x, image_y = get_image_size()
@@ -31,7 +30,9 @@ def keras_process_image(img):
 
 def keras_predict(model, image):
 	processed = keras_process_image(image)
+	print(processed)
 	pred_probab = model.predict(processed)[0]
+	print(pred_probab)
 	pred_class = list(pred_probab).index(max(pred_probab))
 	return max(pred_probab), pred_class
 
@@ -306,9 +307,6 @@ def recognize():
 	cam = cv2.VideoCapture(1)
 	if cam.read()[0]==False:
 		cam = cv2.VideoCapture(0)
-	text = ""
-	word = ""
-	count_same_frame = 0
 	keypress = 1
 	while True:
 		if keypress == 1:

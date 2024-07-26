@@ -13,7 +13,6 @@ def build_squares(img):
 				imgCrop = img[y:y+h, x:x+w]
 			else:
 				imgCrop = np.hstack((imgCrop, img[y:y+h, x:x+w]))
-			#print(imgCrop.shape)
 			cv2.rectangle(img, (x,y), (x+w, y+h), (0,255,0), 1)
 			x+=w+d
 		if np.any(crop == None):

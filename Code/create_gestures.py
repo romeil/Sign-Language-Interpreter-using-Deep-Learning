@@ -10,7 +10,6 @@ def get_hand_hist():
 	return hist
 
 def init_create_folder_database():
-	# create the folder and database if not exist
 	if not os.path.exists("gestures"):
 		os.mkdir("gestures")
 	if not os.path.exists("gesture_db.db"):
@@ -64,10 +63,13 @@ def store_images(g_id):
 		thresh = cv2.merge((thresh,thresh,thresh))
 		thresh = cv2.cvtColor(thresh, cv2.COLOR_BGR2GRAY)
 		thresh = thresh[y:y+h, x:x+w]
-		contours = cv2.findContours(thresh.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)[1]
+		contours = cv2.findContours(thresh.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)[0]
 
 		if len(contours) > 0:
 			contour = max(contours, key = cv2.contourArea)
+
+			print(cv2.contourArea(contour))
+			print(frames)
 			if cv2.contourArea(contour) > 10000 and frames > 50:
 				x1, y1, w1, h1 = cv2.boundingRect(contour)
 				pic_no += 1
@@ -100,7 +102,7 @@ def store_images(g_id):
 			break
 
 init_create_folder_database()
-g_id = input("Enter gesture no.: ")
-g_name = input("Enter gesture name/text: ")
+g_id = input("Enter gesture num: ")
+g_name = input("Enter gesture name: ")
 store_in_db(g_id, g_name)
 store_images(g_id)

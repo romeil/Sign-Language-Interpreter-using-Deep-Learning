@@ -2,7 +2,7 @@ import cv2, os, random
 import numpy as np
 
 def get_image_size():
-	img = cv2.imread('gestures/0/100.jpg', 0)
+	img = cv2.imread('gestures/1/1.jpg', 0)
 	return img.shape
 
 gestures = os.listdir('gestures/')
