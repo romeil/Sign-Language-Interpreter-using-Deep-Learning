@@ -25,7 +25,6 @@ def get_num_of_classes():
 	return len(glob('gestures/*'))
 
 image_x, image_y = get_image_size()
-print(f"{image_x}, {image_y}")
 
 def cnn_model():
 	num_of_classes = get_num_of_classes()
